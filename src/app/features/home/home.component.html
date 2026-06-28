@@ -1,0 +1,48 @@
+<div class="home-wrapper min-vh-100 d-flex flex-column">
+
+  <app-navbar></app-navbar>
+  <div class="container my-auto py-3">
+    <div class="row align-items-center justify-content-center g-4">
+
+      <div class="col-lg-6 col-12 order-2 order-lg-1">
+        <div class="card border-0 shadow-lg p-3 p-md-4 rounded-4 bg-white welcome-card">
+          <div class="card-body">
+            <span
+              class="badge bg-navy-light text-navy px-3 py-2 rounded-pill fw-bold text-uppercase mb-3">Bem-vindo</span>
+
+            <h1 class="display-6 fw-bold text-navy mb-3" *ngIf="currentUser$ | async as user">
+              Olá, {{ user.nome }}!
+            </h1>
+            <h1 class="display-6 fw-bold text-navy mb-3" *ngIf="!(currentUser$ | async)">
+              Olá, Gestor!
+            </h1>
+
+            <p class="lead text-muted mb-4">
+              Você está no portal oficial de telemetria da <strong>FORD</strong>. Aqui você tem acesso completo ao
+              controle de modelos, status de software e análise de vendas da nossa frota conectada.
+            </p>
+
+            <hr class="my-4 text-muted opacity-25">
+
+            <div class="d-flex flex-column flex-sm-row gap-3">
+              <a routerLink="/dashboard"
+                class="btn btn-ford-blue btn-lg px-4 py-3 rounded-3 fw-bold text-white shadow d-flex align-items-center justify-content-center">
+                <i class="bi bi-speedometer2 me-2 fs-5"></i> Acessar Dashboard
+              </a>
+              <button (click)="logout()" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-3 fw-bold">
+                Mudar de Conta
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-3 mt-auto" style="background: rgba(0, 15, 35, 0.65); border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container text-center text-white-50 small d-block w-100" style="white-space: normal !important; display: block !important; word-wrap: break-word !important;">
+      Ford Telemetria Dashboard &copy; 2026. Desenvolvido para a eficiência de sua frota.
+    </div>
+  </footer>
+
+</div>

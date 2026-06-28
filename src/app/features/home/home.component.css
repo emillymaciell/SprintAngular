@@ -1,0 +1,86 @@
+.home-wrapper {
+  background-image: linear-gradient(135deg, rgba(0, 15, 35, 0.35) 0%, rgba(0, 5, 15, 0.65) 100%), url('/img/home-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden !important;
+}
+
+.bg-navy-light {
+  background-color: rgba(0, 44, 91, 0.08);
+}
+
+.ford-logo {
+  max-height: 32px;
+  width: auto;
+}
+
+.btn-ford-blue {
+  background-color: #002c5b;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-ford-blue:hover {
+  background-color: #001f40;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 44, 91, 0.2);
+}
+
+.btn-ford-blue:active {
+  transform: translateY(0);
+}
+
+.welcome-card {
+  transition: transform 0.3s ease;
+}
+
+.welcome-card:hover {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 576px) {
+  .navbar-brand span {
+    font-size: 0.95rem !important;
+    margin-left: 0.25rem !important;
+  }
+
+  .welcome-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  .welcome-card h1 {
+    font-size: 1.75rem;
+  }
+
+  .welcome-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+footer {
+  width: 100%;
+}
+
+footer .container {
+  display: block !important;
+  white-space: normal !important;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  footer .container {
+    font-size: 0.75rem !important;
+  }
+}
