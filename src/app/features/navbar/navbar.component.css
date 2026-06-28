@@ -1,0 +1,19 @@
+.bg-navy {
+  background-color: #002c5b !important;
+}
+
+.ford-logo {
+  max-height: 28px;
+  width: auto;
+}
+
+.tracking-wider {
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 576px) {
+  .navbar-brand span {
+    font-size: 0.95rem !important;
+    margin-left: 0.25rem !important;
+  }
+}
