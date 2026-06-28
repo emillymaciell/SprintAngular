@@ -1,0 +1,84 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center login-container position-relative overflow-hidden">
+  <video autoplay muted loop playsinline onloadedmetadata="this.muted = true; this.play()" class="bg-video">
+    <source src="ford-video.mp4" type="video/mp4">
+    Seu navegador não suporta a tag de vídeo.
+  </video>
+  
+  <div class="bg-video-overlay"></div>
+
+  <div class="container py-5 position-relative z-index-1">
+    <div class="row g-0 justify-content-center shadow-lg rounded-4 overflow-hidden bg-white login-card-wrapper">
+
+      <div class="col-lg-6 d-none d-lg-block position-relative banner-column">
+        <div class="banner-overlay d-flex flex-column justify-content-between p-5 text-white h-100">
+          <div>
+            <span class="badge bg-primary px-3 py-2 rounded-pill text-uppercase tracking-wider">Ford Portal</span>
+          </div>
+          <div>
+            <h1 class="display-5 fw-bold mb-3">Conectividade & Inteligência</h1>
+            <p class="lead text-white-50">Monitore sua frota em tempo real com o novo dashboard de telemetria
+              inteligente Ford.</p>
+          </div>
+          <div class="text-white-50 small">
+            © 2026 Ford Motor Company. Todos os direitos reservados.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-8 col-12 d-flex align-items-center justify-content-center py-5 px-4 px-sm-5">
+        <div class="w-100 form-content-wrapper">
+          <div class="text-center mb-4">
+            <img src="http://localhost:3001/img/ford.png" alt="Ford Logo" class="ford-logo mb-3">
+            <h2 class="fw-bold text-navy">Área de Telemetria</h2>
+            <p class="text-muted">Entre com as suas credenciais administrativas</p>
+          </div>
+
+          <div *ngIf="errorMessage"
+            class="alert alert-danger d-flex align-items-center rounded-3 border-0 px-3 py-2 mb-4" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+            <div>{{ errorMessage }}</div>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="mb-3">
+              <label for="nome" class="form-label text-navy fw-semibold">Usuário</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-person"></i></span>
+                <input type="text" id="nome" formControlName="nome" class="form-control bg-light border-start-0 ps-0"
+                  placeholder="Nome de usuário"
+                  [ngClass]="{ 'is-invalid': loginForm.get('nome')?.touched && loginForm.get('nome')?.invalid }">
+              </div>
+              <div *ngIf="loginForm.get('nome')?.touched && loginForm.get('nome')?.invalid"
+                class="text-danger small mt-1">
+                O usuário é obrigatório.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="senha" class="form-label text-navy fw-semibold">Senha</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-lock"></i></span>
+                <input type="password" id="senha" formControlName="senha"
+                  class="form-control bg-light border-start-0 ps-0" placeholder="Sua senha"
+                  [ngClass]="{ 'is-invalid': loginForm.get('senha')?.touched && loginForm.get('senha')?.invalid }">
+              </div>
+              <div *ngIf="loginForm.get('senha')?.touched && loginForm.get('senha')?.invalid"
+                class="text-danger small mt-1">
+                A senha deve conter pelo menos 4 caracteres.
+              </div>
+            </div>
+
+            <button type="submit"
+              class="btn btn-ford-blue w-100 py-3 rounded-3 fw-bold text-white shadow-sm d-flex align-items-center justify-content-center position-relative"
+              [disabled]="loginForm.invalid || isLoading">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"
+                aria-hidden="true"></span>
+              <span>{{ isLoading ? 'Entrando...' : 'Entrar' }}</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
