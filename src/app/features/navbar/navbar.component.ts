@@ -16,6 +16,15 @@ export class NavbarComponent {
   private vehicleService = inject(VehicleService);
 
   currentUser$ = this.authService.currentUser$;
+  isMenuOpen = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
 
   logout(): void {
     this.vehicleService.clearState();
