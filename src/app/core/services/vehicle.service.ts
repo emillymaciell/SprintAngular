@@ -13,13 +13,6 @@ export class VehicleService {
 
   private vehiclesList: Vehicle[] = [];
 
-  private readonly ID_TO_VIN_MAP: { [key: number]: string } = {
-    1: '2FRHDUYS2Y63NHD22454', // Ranger
-    2: '2RFAASDY54E4HDU34874', // Mustang
-    3: '2FRHDUYS2Y63NHD22455', // Territory
-    4: '2RFAASDY54E4HDU34875'  // Bronco Sport
-  };
-
   private selectedVehicleSubject = new BehaviorSubject<Vehicle | null>(null);
   public selectedVehicle$ = this.selectedVehicleSubject.asObservable();
 
@@ -54,20 +47,7 @@ export class VehicleService {
     }
 
     this.selectedVehicleSubject.next(vehicle);
-
-    const vin = this.ID_TO_VIN_MAP[vehicle.id];
-    if (vin) {
-      this.fetchVehicleData(vin).subscribe({
-        next: (data) => {
-          this.selectedVehicleDataSubject.next(data);
-        },
-        error: (err) => {
-          this.selectedVehicleDataSubject.next(null);
-        }
-      });
-    } else {
-      this.selectedVehicleDataSubject.next(null);
-    }
+    this.selectedVehicleDataSubject.next(null);
   }
 
   searchVehicleByVin(vin: string): Observable<VehicleData | null> {
@@ -75,12 +55,7 @@ export class VehicleService {
     return this.fetchVehicleData(vin).pipe(
       tap((data) => {
         this.selectedVehicleDataSubject.next(data);
-        const matchingVehicle = this.vehiclesList.find(v => v.id === data.id);
-        if (matchingVehicle) {
-          this.selectedVehicleSubject.next(matchingVehicle);
-        } else {
-          this.selectedVehicleSubject.next(null);
-        }
+        this.selectedVehicleSubject.next(null);
       }),
       catchError((err) => {
         this.selectedVehicleSubject.next(null);
